@@ -13,7 +13,7 @@ public class WeiboDataSource {
     public void getShow(Context context, final ResultCallback<WeiboShow> callback)
     {
         HttpConnection.getInstance().get(
-                Weibo.API.SHOW + "?" + AccessTokenKeeper.readAccessToken(context).getToken() + "&"
+                Weibo.API.SHOW + "access_token=" + AccessTokenKeeper.readAccessToken(context).getToken() + "&uid="
                         + AccessTokenKeeper.readAccessToken(context).getUid(),
                 WeiboShow.class,
                 new NetworkCallback<WeiboShow>() {

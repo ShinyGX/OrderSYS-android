@@ -17,13 +17,18 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private MutableLiveData<WeiboLoginResult> weiboLoginResult = new MutableLiveData<>();
+
     private LoginRepository loginRepository;
     private WeiboRepository weiboRepository;
+
+    private int userId;
 
     public LoginViewModel(LoginRepository loginRepository, WeiboRepository weiboRepository) {
         this.loginRepository = loginRepository;
@@ -44,6 +49,7 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void success(UserInfo data) {
                 loginResult.postValue(new LoginResult(new LoggedInUserView(data.getUserName(),data.getUserId())));
+                userId = data.getUserId();
             }
             @Override
             public void failed(String msg) {
@@ -52,17 +58,48 @@ public class LoginViewModel extends ViewModel {
         });
     }
 
-    public void getWeiboName(Context context)
+    public void loginByWeibo(String weiboId)
     {
-        weiboRepository.getShow(context, new RepositoryCallback<WeiboShow>() {
+        loginRepository.loginByWeibo(weiboId, new RepositoryCallback<UserInfo>() {
             @Override
-            public void success(WeiboShow data) {
-                loginResult.postValue(new LoginResult(new LoggedInUserView(data.getScreen_name(),1)));
+            public void success(UserInfo data) {
+                weiboLoginResult.postValue(new WeiboLoginResult(data));
+                userId = data.getUserId();
             }
 
             @Override
             public void failed(String msg) {
+                weiboLoginResult.postValue(new WeiboLoginResult(msg));
+            }
+        });
+    }
 
+    public void getWeiboShow(Context context)
+    {
+        weiboRepository.getShow(context, new RepositoryCallback<WeiboShow>() {
+            @Override
+            public void success(WeiboShow data) {
+                weiboLoginResult.postValue(new WeiboLoginResult(data));
+            }
+
+            @Override
+            public void failed(String msg) {
+                weiboLoginResult.postValue(new WeiboLoginResult(msg));
+            }
+        });
+    }
+
+    public void reset(HashMap<String,String> map)
+    {
+        loginRepository.reset(userId, map, new RepositoryCallback<UserInfo>() {
+            @Override
+            public void success(UserInfo data) {
+                loginResult.postValue(new LoginResult(new LoggedInUserView(data.getUserName(),data.getUserId())));
+            }
+
+            @Override
+            public void failed(String msg) {
+                loginResult.postValue(new LoginResult(msg));
             }
         });
     }
@@ -86,5 +123,13 @@ public class LoginViewModel extends ViewModel {
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public MutableLiveData<WeiboLoginResult> getWeiboLoginResult() {
+        return weiboLoginResult;
     }
 }

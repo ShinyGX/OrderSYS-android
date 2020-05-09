@@ -1,7 +1,10 @@
 package com.last.booking.data;
 
+import com.last.booking.data.dto.UserInfoObj;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.network.ErrorCode;
+
+import java.util.HashMap;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -40,13 +43,38 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
-
     }
 
     private void setLoggedInUser(UserInfo user) {
         this.user = user;
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
+    }
+
+    public void loginByWeibo(String weibo, final RepositoryCallback<UserInfo> callback)
+    {
+        dataSource.loginByWeibo(weibo, new ResultCallback<UserInfo>() {
+            @Override
+            public void result(Integer code, String msg, UserInfo data) {
+                if(code == ErrorCode.SUCCESS)
+                    callback.success(data);
+                else
+                    callback.failed(msg);
+            }
+        });
+    }
+
+    public void reset(int id, HashMap<String,String> map, final RepositoryCallback<UserInfo> callback)
+    {
+        dataSource.reset(id, map, new ResultCallback<UserInfo>() {
+            @Override
+            public void result(Integer code, String msg, UserInfo data) {
+                if(code == ErrorCode.SUCCESS)
+                    callback.success(data);
+                else
+                    callback.failed(msg);
+            }
+        });
     }
 
     public void login(String username, String password, final RepositoryCallback<UserInfo> callback) {

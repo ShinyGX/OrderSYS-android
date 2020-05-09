@@ -1,16 +1,13 @@
 package com.last.booking.network;
 
-import android.os.Debug;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.last.booking.data.Result;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -54,7 +51,7 @@ public class HttpConnection {
                 .url(url)
                 .build();
 
-
+        Log.d("GET METHOD",url);
         //OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -83,6 +80,7 @@ public class HttpConnection {
                 .url(url)
                 .build();
 
+        Log.d("POST METHOD",url);
        // OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override

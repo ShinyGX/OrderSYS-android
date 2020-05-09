@@ -20,12 +20,15 @@ import android.widget.Toast;
 
 import com.last.booking.R;
 import com.last.booking.data.AccessTokenKeeper;
+import com.last.booking.data.model.WeiboShow;
 import com.last.booking.network.Weibo;
 import com.last.booking.ui.main.MainActivity;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.exception.WeiboException;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -59,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),
                                 AccessTokenKeeper.readAccessToken(getApplicationContext()).getUid(),
                                 Toast.LENGTH_SHORT).show();
+
+                        loginViewModel.loginByWeibo(
+                                AccessTokenKeeper.readAccessToken(getApplicationContext()).getUid());
                     }
 
                     @Override
@@ -76,6 +82,31 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        loginViewModel.getWeiboLoginResult().observe(this, new Observer<WeiboLoginResult>() {
+            @Override
+            public void onChanged(@Nullable WeiboLoginResult weiboLoginResult) {
+                if(weiboLoginResult == null)
+                    return;
+                if(weiboLoginResult.getErrMsg() != null)
+                    Toast.makeText(
+                            getApplicationContext(),
+                            weiboLoginResult.getErrMsg(),
+                            Toast.LENGTH_SHORT).show();
+
+
+                if(weiboLoginResult.getUserInfo() != null)
+                    loginViewModel.getWeiboShow(getApplicationContext());
+
+                if(weiboLoginResult.getWeiboShow() != null)
+                {
+                    WeiboShow weiboShow = weiboLoginResult.getWeiboShow();
+                    HashMap<String,String> map = new HashMap<>();
+                    map.put("name",weiboShow.getScreen_name());
+                    map.put("icon",weiboShow.getProfile_image_url());
+                    loginViewModel.reset(map);
+                }
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override

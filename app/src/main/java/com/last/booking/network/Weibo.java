@@ -13,7 +13,7 @@ public class Weibo {
 
 
     public static class API{
-        public final static String SHOW = "https://api.weibo.com/2/users/show.json";
+        public final static String SHOW = "https://api.weibo.com/2/users/show.json?";
         public final static String AUTHORIZE = "https://api.weibo.com/oauth2/authorize?" + "client_id=" + APP_KEY +
                 "&redirect_uri=" +  REDIRECT_URL + "&display=mobile";
         public final static String ACCESS_TOKEN = "https://api.weibo.com/oauth2/access_token?" + "client_id=" + APP_KEY +
