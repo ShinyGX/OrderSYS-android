@@ -1,7 +1,9 @@
-package com.last.booking.data;
+package com.last.booking.data.datasource;
 
 import android.util.Log;
 
+import com.last.booking.data.Result;
+import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.CityInfoObj;
 import com.last.booking.data.dto.OfficeInfoObj;
 import com.last.booking.data.model.OfficeInfo;

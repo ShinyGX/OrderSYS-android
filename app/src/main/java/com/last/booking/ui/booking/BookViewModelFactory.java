@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.last.booking.data.BookingDataSource;
+import com.last.booking.data.datasource.BookingDataSource;
 import com.last.booking.data.BookingRepository;
 
 public class BookViewModelFactory implements ViewModelProvider.Factory {

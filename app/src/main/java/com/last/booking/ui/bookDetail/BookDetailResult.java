@@ -2,8 +2,6 @@ package com.last.booking.ui.bookDetail;
 
 import android.support.annotation.Nullable;
 
-import com.last.booking.data.model.MissionDetail;
-
 public class BookDetailResult {
 
     @Nullable

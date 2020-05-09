@@ -5,18 +5,13 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 
-import com.last.booking.data.AccessTokenKeeper;
 import com.last.booking.data.LoginRepository;
 import com.last.booking.data.RepositoryCallback;
-import com.last.booking.data.WeiboDataSource;
 import com.last.booking.data.WeiboRepository;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.R;
 import com.last.booking.data.model.WeiboShow;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 public class LoginViewModel extends ViewModel {

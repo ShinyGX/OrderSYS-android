@@ -104,6 +104,7 @@ public class BookingActivity extends AppCompatActivity {
                                     intent.putExtra("userId",bookingViewModel.getUserId());
                                     intent.putExtra("officeId",areaInfoView.getOfficeId(childPosition));
                                     startActivity(intent);
+                                    BookingActivity.this.finish();
                                     return true;
                                 }
                             });

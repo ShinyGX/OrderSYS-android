@@ -17,6 +17,11 @@ public class API {
 
     }
 
+    public static class Business
+    {
+        public static String business = baseApi + "/business/business?";
+    }
+
     public static class Mission
     {
         public static String getUsefulInfo = baseApi + "/mission/getUsefulInfo?";

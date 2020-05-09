@@ -4,9 +4,9 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.last.booking.data.LoginDataSource;
+import com.last.booking.data.datasource.LoginDataSource;
 import com.last.booking.data.LoginRepository;
-import com.last.booking.data.WeiboDataSource;
+import com.last.booking.data.datasource.WeiboDataSource;
 import com.last.booking.data.WeiboRepository;
 
 /**

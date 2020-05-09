@@ -1,9 +1,9 @@
-package com.last.booking.data;
+package com.last.booking.data.datasource;
 
-import android.os.Debug;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
+import com.last.booking.data.Result;
+import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.BaseInfoObj;
 import com.last.booking.data.dto.BookInfoObj;
 import com.last.booking.data.model.BookInfo;
@@ -11,7 +11,6 @@ import com.last.booking.network.API;
 import com.last.booking.network.HttpConnection;
 import com.last.booking.network.NetworkCallback;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

@@ -1,6 +1,7 @@
-package com.last.booking.data;
+package com.last.booking.data.datasource;
 
-import com.last.booking.data.dto.BaseInfoObj;
+import com.last.booking.data.Result;
+import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.UserInfoObj;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.network.API;

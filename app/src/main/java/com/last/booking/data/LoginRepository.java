@@ -1,6 +1,6 @@
 package com.last.booking.data;
 
-import com.last.booking.data.dto.UserInfoObj;
+import com.last.booking.data.datasource.LoginDataSource;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.network.ErrorCode;
 

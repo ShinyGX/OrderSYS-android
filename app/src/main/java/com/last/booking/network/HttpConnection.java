@@ -44,7 +44,7 @@ public class HttpConnection {
         return instance;
     }
 
-    public <T> void get(final String url, final Class<T> cls, final NetworkCallback<T> callback)
+    public <T> void get(String url, final Class<T> cls, final NetworkCallback<T> callback)
     {
         Request request = new Request.Builder()
                 .get()
@@ -65,7 +65,7 @@ public class HttpConnection {
                 if(response.isSuccessful())
                 {
                     String str = response.body().string();
-                    Log.d("GET METHOD",url + ":\n" + str);
+                    Log.d("GET METHOD",str);
                     callback.onResponse(true, new Result.Success<>((T) gson.fromJson(str, cls)));
                 }
             }
@@ -73,7 +73,7 @@ public class HttpConnection {
 
     }
 
-    public <T> void post(final String url, RequestBody body, final Class<T> cls, final NetworkCallback<T> callback)
+    public <T> void post(String url, RequestBody body, final Class<T> cls, final NetworkCallback<T> callback)
     {
         Request request = new Request.Builder()
                 .post(body)
@@ -93,7 +93,7 @@ public class HttpConnection {
                 if(response.isSuccessful())
                 {
                     String str = response.body().string();
-                    Log.d("POST METHOD",url + ":\n" + str);
+                    Log.d("POST METHOD",str);
                     callback.onResponse(true,new Result.Success<>((T)gson.fromJson(str,cls)));
 
                 }

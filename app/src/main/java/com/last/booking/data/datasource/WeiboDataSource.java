@@ -1,7 +1,10 @@
-package com.last.booking.data;
+package com.last.booking.data.datasource;
 
 import android.content.Context;
 
+import com.last.booking.data.AccessTokenKeeper;
+import com.last.booking.data.Result;
+import com.last.booking.data.ResultCallback;
 import com.last.booking.data.model.WeiboShow;
 import com.last.booking.network.HttpConnection;
 import com.last.booking.network.NetworkCallback;

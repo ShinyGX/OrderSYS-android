@@ -2,6 +2,7 @@ package com.last.booking.data;
 
 import android.content.Context;
 
+import com.last.booking.data.datasource.WeiboDataSource;
 import com.last.booking.data.model.WeiboShow;
 
 public class WeiboRepository {

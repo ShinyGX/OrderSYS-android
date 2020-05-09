@@ -53,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
         weiboLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                loadingProgressBar.setVisibility(View.VISIBLE);
                 weiboAuth.anthorize(new WeiboAuthListener() {
                     @Override
                     public void onComplete(Bundle bundle) {
@@ -81,6 +83,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+// TODO: 自动登陆
+
+//        Oauth2AccessToken token = AccessTokenKeeper.readAccessToken(this);
+//        if(!token.getToken().isEmpty() && !token.getUid().isEmpty())
+//            loginViewModel.loginByWeibo(token.getUid());
 
         loginViewModel.getWeiboLoginResult().observe(this, new Observer<WeiboLoginResult>() {
             @Override
