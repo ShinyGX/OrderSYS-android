@@ -34,6 +34,7 @@
         <activity android:name=".ui.businessCheck.BusinessCheckActivity"/>
         <activity android:name=".ui.bookDetail.BookDetailActivity"/>
         <activity android:name=".ui.orderFinalCheck.OrderFinalCheckActivity"/>
+        <activity android:name=".ui.register.RegisterActivity"/>
 
     </application>
 

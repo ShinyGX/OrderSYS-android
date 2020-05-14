@@ -85,5 +85,10 @@ public class LoginDataSource {
                 });
     }
 
+    public void register()
+    {
+
+    }
+
 
 }

@@ -7,7 +7,7 @@ import com.last.booking.network.ErrorCode;
 public class BusinessRepository {
 
     private static volatile BusinessRepository instance;
-    private static BusinessDataSource dataSource;
+    private BusinessDataSource dataSource;
     private BusinessRepository(BusinessDataSource dataSource)
     {
         this.dataSource = dataSource;

@@ -23,6 +23,7 @@ import com.last.booking.data.AccessTokenKeeper;
 import com.last.booking.data.model.WeiboShow;
 import com.last.booking.network.Weibo;
 import com.last.booking.ui.main.MainActivity;
+import com.last.booking.ui.register.RegisterActivity;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -49,7 +50,18 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
+        Button registerButton = findViewById(R.id.register);
         ImageButton weiboLogin = findViewById(R.id.weibo_login);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
         weiboLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +95,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-// TODO: 自动登陆
-
-//        Oauth2AccessToken token = AccessTokenKeeper.readAccessToken(this);
-//        if(!token.getToken().isEmpty() && !token.getUid().isEmpty())
-//            loginViewModel.loginByWeibo(token.getUid());
 
         loginViewModel.getWeiboLoginResult().observe(this, new Observer<WeiboLoginResult>() {
             @Override
