@@ -2,6 +2,7 @@ package com.last.booking.ui.register;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.last.booking.R;
+import com.last.booking.data.Userdata;
+import com.last.booking.ui.main.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -130,7 +133,30 @@ public class RegisterActivity extends AppCompatActivity {
         btn_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                registerViewModel.register();
+            }
+        });
 
+        registerViewModel.getRegisterResult().observe(this, new Observer<RegisterResult>() {
+            @Override
+            public void onChanged(@Nullable RegisterResult registerResult) {
+                if(registerResult == null)
+                    return;
+
+                if(registerResult.getError() != null)
+                {
+                    Toast.makeText(getApplicationContext(),
+                            registerResult.getError(),Toast.LENGTH_SHORT).show();
+                }
+
+                if(registerResult.getUserInfo() != null)
+                {
+                    Intent intent = new Intent();
+                    intent.putExtra("userId",registerResult.getUserInfo().getUserId());
+                    intent.setClass(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 

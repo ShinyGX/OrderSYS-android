@@ -46,13 +46,13 @@ public class LoginActivity extends AppCompatActivity {
         final WeiboAuth weiboAuth = new WeiboAuth(this,
                 Weibo.APP_KEY,Weibo.REDIRECT_URL,Weibo.SCOPE);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        final EditText usernameEditText = findViewById(R.id.login_username);
+        final EditText passwordEditText = findViewById(R.id.login_password);
+        final Button loginButton = findViewById(R.id.login_login);
+        final ProgressBar loadingProgressBar = findViewById(R.id.login_loading);
 
-        Button registerButton = findViewById(R.id.register);
-        ImageButton weiboLogin = findViewById(R.id.weibo_login);
+        Button registerButton = findViewById(R.id.login_register);
+        ImageButton weiboLogin = findViewById(R.id.login_weibo_login);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onCancel() {
                         Toast.makeText(getApplicationContext(),
                                 "取消了登陆",Toast.LENGTH_SHORT).show();
+                        loadingProgressBar.setVisibility(View.INVISIBLE);
                     }
                 });
             }
@@ -114,9 +115,11 @@ public class LoginActivity extends AppCompatActivity {
                 if(weiboLoginResult.getWeiboShow() != null)
                 {
                     WeiboShow weiboShow = weiboLoginResult.getWeiboShow();
+                    String imageUrl = weiboShow.getProfile_image_url();
+                    imageUrl = imageUrl.substring(0,imageUrl.lastIndexOf('?'));
                     HashMap<String,String> map = new HashMap<>();
                     map.put("name",weiboShow.getScreen_name());
-                    map.put("icon",weiboShow.getProfile_image_url());
+                    map.put("icon",imageUrl);
                     loginViewModel.reset(map);
                 }
             }

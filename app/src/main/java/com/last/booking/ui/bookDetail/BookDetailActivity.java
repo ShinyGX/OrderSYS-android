@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.last.booking.R;
-import com.last.booking.data.BookingDetailRepository;
 import com.last.booking.data.model.MissionDetail;
 import com.last.booking.ui.bookDetail.adapter.MissionDetailAdapter;
 import com.last.booking.ui.bookDetail.adapter.OnItemClick;
@@ -36,7 +35,7 @@ public class BookDetailActivity extends AppCompatActivity {
         bookDetailViewModel.setUserId(userId);
         bookDetailViewModel.setOfficeId(officeId);
 
-        final RecyclerView detail = findViewById(R.id.booking_detail);
+        final RecyclerView detail = findViewById(R.id.detail_booking_detail);
         bookDetailViewModel.getUsefulInfo();
 
         bookDetailViewModel.getBookInfo().observe(this, new Observer<BookDetailResult>() {

@@ -8,7 +8,7 @@ public class API {
         public static String login = baseApi + "/user/login?";
         public static String loginByWeibo = baseApi + "/user/loginByWeibo?";
         public static String reset = baseApi + "/user/reset?";
-        public static String resgister = baseApi + "/user/register?";
+        public static String register = baseApi + "/user/register?";
     }
 
     public static class Office

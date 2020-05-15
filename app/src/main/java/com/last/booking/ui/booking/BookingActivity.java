@@ -33,7 +33,7 @@ public class BookingActivity extends AppCompatActivity {
 
         bookingViewModel.setUserId(userId);
 
-        final Spinner spinner = findViewById(R.id.city_spinner);
+        final Spinner spinner = findViewById(R.id.booking_city_spinner);
         bookingViewModel.getCity();
 
         bookingViewModel.getCityInfo().observe(this, new Observer<BookingResult>() {
@@ -72,7 +72,7 @@ public class BookingActivity extends AppCompatActivity {
             }
         });
 
-        final ExpandableListView expandableListView = findViewById(R.id.office_list);
+        final ExpandableListView expandableListView = findViewById(R.id.booking_office_list);
         bookingViewModel.getOfficeInfo().observe(this,
                 new Observer<BookingResult>() {
                     @Override

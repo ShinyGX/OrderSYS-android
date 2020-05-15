@@ -1,6 +1,6 @@
 package com.last.booking.data;
 
-import com.last.booking.data.datasource.LoginDataSource;
+import com.last.booking.data.datasource.UserDataSource;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.network.ErrorCode;
 
@@ -14,19 +14,19 @@ public class LoginRepository {
 
     private static volatile LoginRepository instance;
 
-    private LoginDataSource dataSource;
+    private UserDataSource dataSource;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
     private UserInfo user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    private LoginRepository(UserDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     private static final Object lock = new Object();
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance(UserDataSource dataSource) {
         if (instance == null) {
             synchronized (lock) {
                 if (instance == null)

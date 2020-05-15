@@ -35,10 +35,10 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
 
         orderFinalCheckViewModel.getBusinessInfo(businessId);
 
-        final TextView tv_businessName = findViewById(R.id.business_id);
-        final TextView tv_businessDesc = findViewById(R.id.business_desc);
-        TextView tv_time = findViewById(R.id.order_time);
-        Button btn_order = findViewById(R.id.make_sure);
+        final TextView tv_businessName = findViewById(R.id.finalcheck_business_id);
+        final TextView tv_businessDesc = findViewById(R.id.finalcheck_business_desc);
+        TextView tv_time = findViewById(R.id.finalcheck_order_time);
+        Button btn_order = findViewById(R.id.finalcheck_commit);
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM月dd日 a HH:mm");
         tv_time.setText(simpleDateFormat.format(new Date(time)));

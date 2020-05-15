@@ -16,7 +16,7 @@ import java.util.List;
 
 import okhttp3.FormBody;
 
-public class BookingDetailDataSource {
+public class MissionDataSource {
 
     public void getUsefulInfo(int id, final ResultCallback<List<BookInfo>> callback)
     {

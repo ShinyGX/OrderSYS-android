@@ -13,7 +13,7 @@ public class DataGenerator {
     {
         Fragment[] fragments = new Fragment[2];
         fragments[0] = new BusinessFragment();
-        fragments[1] = new MineFragment();
+        fragments[1] = new InformationFragment();
         return fragments;
 
     }

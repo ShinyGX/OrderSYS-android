@@ -1,7 +1,6 @@
 package com.last.booking.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 .get(MainViewModel.class);
 
         mainViewModel.setUserId(userId);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_layout);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.main_bottom_navigation_layout);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             bundle.putInt("userId",mainViewModel.getUserId());
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_container, fragment)
+                    .replace(R.id.main_home_container, fragment)
                     .commit();
         }
 

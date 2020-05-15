@@ -34,4 +34,8 @@
     <string name="repeat_pwd">重复输入密码</string>
     <string name="commit">确定</string>
     <string name="register_username">用户名</string>
+    <string name="bind_phone">绑定手机号</string>
+    <string name="information_username">用户名</string>
+    <string name="information_upload">上传头像</string>
+    <string name="information_msg">修改个人信息</string>
 </resources>

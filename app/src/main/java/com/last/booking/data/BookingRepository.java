@@ -1,6 +1,6 @@
 package com.last.booking.data;
 
-import com.last.booking.data.datasource.BookingDataSource;
+import com.last.booking.data.datasource.OfficeDataSource;
 import com.last.booking.data.model.CityInfo;
 import com.last.booking.data.model.OfficeInfo;
 import com.last.booking.network.ErrorCode;
@@ -10,15 +10,15 @@ import java.util.List;
 public class BookingRepository {
 
     private static volatile BookingRepository instance;
-    private BookingDataSource bookingDataSource;
+    private OfficeDataSource bookingDataSource;
 
-    private BookingRepository(BookingDataSource dataSource)
+    private BookingRepository(OfficeDataSource dataSource)
     {
         this.bookingDataSource = dataSource;
     }
 
     private static final Object lock = new Object();
-    public static BookingRepository getInstance(BookingDataSource dataSource) {
+    public static BookingRepository getInstance(OfficeDataSource dataSource) {
         if (instance == null) {
             synchronized (lock) {
                 if (instance == null)

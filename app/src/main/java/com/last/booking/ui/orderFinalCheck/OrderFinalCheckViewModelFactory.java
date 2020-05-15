@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.last.booking.data.BookingDetailRepository;
 import com.last.booking.data.BusinessRepository;
-import com.last.booking.data.datasource.BookingDetailDataSource;
+import com.last.booking.data.datasource.MissionDataSource;
 import com.last.booking.data.datasource.BusinessDataSource;
 
 public class OrderFinalCheckViewModelFactory implements ViewModelProvider.Factory {
@@ -17,7 +17,7 @@ public class OrderFinalCheckViewModelFactory implements ViewModelProvider.Factor
         {
             return (T) new OrderFinalCheckViewModel(
                     BusinessRepository.getInstance(new BusinessDataSource()),
-                    BookingDetailRepository.getInstance(new BookingDetailDataSource()));
+                    BookingDetailRepository.getInstance(new MissionDataSource()));
         }else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

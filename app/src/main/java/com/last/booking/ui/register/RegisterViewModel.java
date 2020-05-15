@@ -4,15 +4,17 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.last.booking.data.RepositoryCallback;
-import com.last.booking.data.SmsRepository;
+import com.last.booking.data.RegisterRepository;
+import com.last.booking.data.Userdata;
 import com.last.booking.data.model.SmsCode;
+import com.last.booking.data.model.UserInfo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterViewModel extends ViewModel {
 
-    private SmsRepository smsRepository;
+    private RegisterRepository registerRepository;
 
     private MutableLiveData<PhoneFormState> phoneState = new MutableLiveData<>();
     private MutableLiveData<PasswordFormState> pwdState = new MutableLiveData<>();
@@ -20,6 +22,7 @@ public class RegisterViewModel extends ViewModel {
     private MutableLiveData<RepeatPwdFormState> repeatPwdState = new MutableLiveData<>();
     private MutableLiveData<RegisterViewModel> registerState = new MutableLiveData<>();
     private MutableLiveData<UsernameFormState> usernameState = new MutableLiveData<>();
+    private MutableLiveData<RegisterResult> registerResult = new MutableLiveData<>();
 
     private int code;
     private boolean hasCode = false;
@@ -27,8 +30,8 @@ public class RegisterViewModel extends ViewModel {
     private String phone;
     private String username;
 
-    public RegisterViewModel(SmsRepository smsRepository) {
-        this.smsRepository = smsRepository;
+    public RegisterViewModel(RegisterRepository smsRepository) {
+        this.registerRepository = smsRepository;
     }
 
     public void phoneDataChange(String phone) {
@@ -105,6 +108,36 @@ public class RegisterViewModel extends ViewModel {
         codeState.postValue(new CodeFormState("验证码错误"));
     }
 
+    public void register()
+    {
+        if(phone == null || phone.isEmpty())
+        {
+            registerResult.postValue(new RegisterResult("手机号错误"));
+            return;
+        }
+
+        if(username == null || username.isEmpty())
+        {
+            registerResult.postValue(new RegisterResult("用户名错误"));
+            return;
+        }
+
+
+        registerRepository.login(phone, password, username, new RepositoryCallback<UserInfo>() {
+            @Override
+            public void success(UserInfo data) {
+                registerResult.postValue(new RegisterResult(data));
+                Userdata.getInstance().setUserInfo(data);
+            }
+
+            @Override
+            public void failed(String msg) {
+                registerResult.postValue(new RegisterResult(msg));
+            }
+        });
+
+
+    }
 
     public void getCode()
     {
@@ -117,7 +150,7 @@ public class RegisterViewModel extends ViewModel {
         hasCode = false;
         code = -1;
 
-        smsRepository.getCode(phone, new RepositoryCallback<SmsCode>() {
+        registerRepository.getCode(phone, new RepositoryCallback<SmsCode>() {
             @Override
             public void success(SmsCode data) {
                 hasCode = true;
@@ -129,6 +162,10 @@ public class RegisterViewModel extends ViewModel {
 
             }
         });
+    }
+
+    public MutableLiveData<RegisterResult> getRegisterResult() {
+        return registerResult;
     }
 
     private boolean isSpecialChar(String str) {

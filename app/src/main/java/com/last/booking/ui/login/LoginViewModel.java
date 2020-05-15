@@ -7,6 +7,7 @@ import android.content.Context;
 
 import com.last.booking.data.LoginRepository;
 import com.last.booking.data.RepositoryCallback;
+import com.last.booking.data.Userdata;
 import com.last.booking.data.WeiboRepository;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.R;
@@ -44,6 +45,7 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void success(UserInfo data) {
                 loginResult.postValue(new LoginResult(new LoggedInUserView(data.getUserName(),data.getUserId())));
+                Userdata.getInstance().setUserInfo(data);
                 userId = data.getUserId();
             }
             @Override
@@ -60,6 +62,7 @@ public class LoginViewModel extends ViewModel {
             public void success(UserInfo data) {
                 weiboLoginResult.postValue(new WeiboLoginResult(data));
                 userId = data.getUserId();
+                Userdata.getInstance().setUserInfo(data);
             }
 
             @Override

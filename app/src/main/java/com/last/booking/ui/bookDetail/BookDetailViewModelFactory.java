@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.last.booking.data.datasource.BookingDetailDataSource;
+import com.last.booking.data.datasource.MissionDataSource;
 import com.last.booking.data.BookingDetailRepository;
 
 public class BookDetailViewModelFactory implements ViewModelProvider.Factory {
@@ -12,7 +12,7 @@ public class BookDetailViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(BookDetailViewModel.class)) {
-            return (T) new BookDetailViewModel(BookingDetailRepository.getInstance(new BookingDetailDataSource()));
+            return (T) new BookDetailViewModel(BookingDetailRepository.getInstance(new MissionDataSource()));
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.last.booking.data.datasource.LoginDataSource;
+import com.last.booking.data.datasource.UserDataSource;
 import com.last.booking.data.LoginRepository;
 import com.last.booking.data.datasource.WeiboDataSource;
 import com.last.booking.data.WeiboRepository;
@@ -21,7 +21,7 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LoginViewModel.class)) {
             return (T) new LoginViewModel(
-                    LoginRepository.getInstance(new LoginDataSource()),
+                    LoginRepository.getInstance(new UserDataSource()),
                     WeiboRepository.getInstance(new WeiboDataSource()));
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
