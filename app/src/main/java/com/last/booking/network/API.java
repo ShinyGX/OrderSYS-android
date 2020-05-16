@@ -9,6 +9,7 @@ public class API {
         public static String loginByWeibo = baseApi + "/user/loginByWeibo?";
         public static String reset = baseApi + "/user/reset?";
         public static String register = baseApi + "/user/register?";
+        public static String userInfo = baseApi + "/user/userInfo?";
     }
 
     public static class Office
@@ -32,5 +33,10 @@ public class API {
     public static class Sms
     {
         public static String code = baseApi + "/sms/code?";
+    }
+
+    public static class File
+    {
+        public static String upload = baseApi + "/file/upload?";
     }
 }

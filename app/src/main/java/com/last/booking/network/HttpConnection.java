@@ -81,10 +81,8 @@ public class HttpConnection {
                         String sb = prefix +
                                 boundary +
                                 lineEnd +
-                                "Content-Disposition: form-data; name=\"img\";filename=\"" +
-                                file.getName() +
-                                "\"" +
-                                lineEnd +
+                                "Content-Disposition: form-data; name=\"img\";" +
+                                "filename=\"" + file.getName() + "\"" + lineEnd +
                                 "Content-Type: application/octet-stream; charset=utf-8" +
                                 lineEnd +
                                 lineEnd;

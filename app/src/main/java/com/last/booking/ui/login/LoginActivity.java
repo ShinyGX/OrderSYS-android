@@ -1,13 +1,18 @@
 package com.last.booking.ui.login;
 
+import android.Manifest;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -35,12 +40,35 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
 
+    private final static int REQUEST_CODE = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+
+        if (!(ActivityCompat.checkSelfPermission(
+                LoginActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                || !(ActivityCompat.checkSelfPermission(
+                        LoginActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+                || !(ActivityCompat.checkSelfPermission(
+                        LoginActivity.this,Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED)
+                || !(ActivityCompat.checkSelfPermission(
+                LoginActivity.this,Manifest.permission.ACCESS_WIFI_STATE) == PackageManager.PERMISSION_GRANTED)
+                || !(ActivityCompat.checkSelfPermission(
+                LoginActivity.this,Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED))
+        {
+            //没有权限，申请权限
+            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.CAMERA,
+                                    Manifest.permission.INTERNET,
+                                    Manifest.permission.ACCESS_WIFI_STATE,
+                                    Manifest.permission.ACCESS_NETWORK_STATE};
+
+            ActivityCompat.requestPermissions(LoginActivity.this,permissions,REQUEST_CODE);
+        }
 
 
         final WeiboAuth weiboAuth = new WeiboAuth(this,
@@ -205,6 +233,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_CODE && grantResults.length == 5)
+        {
+            for(int i = 0;i < 5;i++)
+            {
+                if(grantResults[i] != PackageManager.PERMISSION_GRANTED)
+                    Log.e("Request Permission","Failed");
+            }
+        }
+
+        Log.e("Request Permission","Success");
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

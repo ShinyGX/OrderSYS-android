@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--Camera Feature 声明对camera feature的使用 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
 
     <application
         android:allowBackup="true"
@@ -14,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".BookApplication">
+        android:name=".BookApplication"
+        android:usesCleartextTraffic="true">
 
 
 
@@ -35,6 +42,7 @@
         <activity android:name=".ui.bookDetail.BookDetailActivity"/>
         <activity android:name=".ui.orderFinalCheck.OrderFinalCheckActivity"/>
         <activity android:name=".ui.register.RegisterActivity"/>
+        <activity android:name=".ui.newInformation.NewInformationActivity"/>
 
     </application>
 

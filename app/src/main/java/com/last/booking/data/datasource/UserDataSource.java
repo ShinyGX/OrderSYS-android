@@ -85,6 +85,25 @@ public class UserDataSource {
                 });
     }
 
+    public void userInfo(int id, final ResultCallback<UserInfo> callback)
+    {
+        HttpConnection.getInstance()
+                .get(API.User.userInfo + "id=" + id,
+                        UserInfoObj.class,
+                        new NetworkCallback<UserInfoObj>() {
+                            @Override
+                            public void onResponse(boolean success, Result<UserInfoObj> result) {
+                                if(success)
+                                {
+                                    UserInfoObj info = ((Result.Success<UserInfoObj>)result).getData();
+                                    callback.result(info.getCode(),info.getMsg(),info.getData());
+                                }
+                                else
+                                    System.out.println(((Result.Error)result).getError().getMessage());
+                            }
+                        });
+    }
+
     public void register(String phone, String pwd, String name, final ResultCallback<UserInfo> callback)
     {
         HttpConnection.getInstance()
