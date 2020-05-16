@@ -39,13 +39,14 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
-    public void login(String username, String password) {
+    public void login(String username, final String password) {
         // can be launched in a separate asynchronous job
         loginRepository.login(username, password, new RepositoryCallback<UserInfo>() {
             @Override
             public void success(UserInfo data) {
                 loginResult.postValue(new LoginResult(new LoggedInUserView(data.getUserName(),data.getUserId())));
                 Userdata.getInstance().setUserInfo(data);
+                Userdata.getInstance().setPwd(password);
                 userId = data.getUserId();
             }
             @Override

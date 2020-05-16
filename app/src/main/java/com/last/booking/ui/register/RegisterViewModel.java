@@ -128,6 +128,7 @@ public class RegisterViewModel extends ViewModel {
             public void success(UserInfo data) {
                 registerResult.postValue(new RegisterResult(data));
                 Userdata.getInstance().setUserInfo(data);
+                Userdata.getInstance().setPwd(password);
             }
 
             @Override
