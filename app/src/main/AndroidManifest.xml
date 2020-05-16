@@ -43,6 +43,7 @@
         <activity android:name=".ui.orderFinalCheck.OrderFinalCheckActivity"/>
         <activity android:name=".ui.register.RegisterActivity"/>
         <activity android:name=".ui.newInformation.NewInformationActivity"/>
+        <activity android:name=".ui.rebind.RebindActivity"/>
 
     </application>
 

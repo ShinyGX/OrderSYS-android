@@ -34,6 +34,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.last.booking.R;
 import com.last.booking.data.Userdata;
 import com.last.booking.ui.newInformation.NewInformationActivity;
+import com.last.booking.ui.rebind.RebindActivity;
 import com.last.booking.uitl.FileUtil;
 
 import java.io.BufferedOutputStream;
@@ -133,6 +134,15 @@ public class InformationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), NewInformationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_rebind = view.findViewById(R.id.information_rebind);
+        btn_rebind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RebindActivity.class);
                 startActivity(intent);
             }
         });

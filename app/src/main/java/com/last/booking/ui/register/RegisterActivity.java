@@ -1,5 +1,6 @@
 package com.last.booking.ui.register;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.last.booking.R;
 import com.last.booking.data.Userdata;
 import com.last.booking.ui.main.MainActivity;
+import com.last.booking.uitl.ITimer;
+import com.last.booking.uitl.TimeCount;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,6 +40,22 @@ public class RegisterActivity extends AppCompatActivity {
 
         final Button btn_getCode = findViewById(R.id.register_get_code);
         final Button btn_commit = findViewById(R.id.register_commit);
+
+        final TimeCount timeCount = new TimeCount(60000,1000);
+        timeCount.setiTimer(new ITimer() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onTick(long millisUntilFinished) {
+                btn_getCode.setClickable(false);
+                btn_getCode.setText("(" + millisUntilFinished / 1000 + ") 秒后可重新发送");
+            }
+
+            @Override
+            public void onFinish() {
+                btn_getCode.setClickable(true);
+                btn_getCode.setText(getString(R.string.get_code));
+            }
+        });
 
         et_username.addTextChangedListener(new TextWatcher() {
             @Override
@@ -134,6 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerViewModel.register();
+                timeCount.start();
             }
         });
 
