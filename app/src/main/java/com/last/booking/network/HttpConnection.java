@@ -7,7 +7,14 @@ import com.last.booking.data.Result;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -42,6 +49,87 @@ public class HttpConnection {
             }
         }
         return instance;
+    }
+
+    public void uploadFile(final File file, final String urlstr, final NetworkCallback<Boolean> callback)
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean result = false;
+                final String boundary = "letv";
+                final String prefix = "--",lineEnd = "\r\n";
+                final String content_type = "multipart/form-data";
+                try {
+                    URL url = new URL(urlstr);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setReadTimeout(3000);
+                    httpURLConnection.setConnectTimeout(3000);
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setRequestProperty("Charset","utf-8");
+                    httpURLConnection.setRequestProperty("connection","keep-alive");
+                    httpURLConnection.setRequestProperty("Content-Type",
+                            content_type + ";boundary=" + boundary);
+
+                    if(file != null)
+                    {
+                        DataOutputStream dataOutputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+
+                        String sb = prefix +
+                                boundary +
+                                lineEnd +
+                                "Content-Disposition: form-data; name=\"img\";filename=\"" +
+                                file.getName() +
+                                "\"" +
+                                lineEnd +
+                                "Content-Type: application/octet-stream; charset=utf-8" +
+                                lineEnd +
+                                lineEnd;
+
+                        dataOutputStream.write(sb.getBytes());
+
+                        InputStream inputStream = new FileInputStream(file);
+                        byte[] bytes = new byte[1024 * 1024];
+                        int len  =0;
+
+                        while ((len = inputStream.read(bytes)) != -1)
+                        {
+                            dataOutputStream.write(bytes,0,len);
+                        }
+
+                        inputStream.close();
+                        dataOutputStream.write(lineEnd.getBytes());
+
+                        byte[] endData = (prefix + boundary + prefix + lineEnd).getBytes();
+                        dataOutputStream.write(endData);
+
+                        dataOutputStream.flush();
+
+                        int res = httpURLConnection.getResponseCode();
+                        if(res == 200)
+                            result = true;
+
+                        callback.onResponse(result,null);
+
+                    }
+
+                    callback.onResponse(result,null);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }).start();
+
+
+
+
     }
 
     public <T> void get(String url, final Class<T> cls, final NetworkCallback<T> callback)
