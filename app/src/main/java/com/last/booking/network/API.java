@@ -22,6 +22,7 @@ public class API {
     public static class Business
     {
         public static String business = baseApi + "/business/business?";
+        public static String getAllBusiness = baseApi + "/business/getAllBusiness";
     }
 
     public static class Mission

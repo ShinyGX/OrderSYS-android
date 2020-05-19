@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import com.last.booking.R;
 import com.last.booking.ui.booking.BookingActivity;
 import com.last.booking.ui.businessCheck.BusinessCheckActivity;
+import com.last.booking.ui.businessDetail.BusinessDetailActivity;
 import com.last.booking.ui.messageRealtime.MessageRealtimeActivity;
 
 public class BusinessFragment extends Fragment {
@@ -39,7 +40,7 @@ public class BusinessFragment extends Fragment {
         ib_businessCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpOtherActivity(BusinessCheckActivity.class);
+                jumpOtherActivity(BusinessDetailActivity.class);
             }
         });
         ImageButton ib_messageRealtime = view.findViewById(R.id.mine_message_realtime);

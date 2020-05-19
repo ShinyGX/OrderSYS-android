@@ -2,7 +2,6 @@ package com.last.booking.ui.rebind;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -44,6 +44,7 @@
         <activity android:name=".ui.register.RegisterActivity"/>
         <activity android:name=".ui.newInformation.NewInformationActivity"/>
         <activity android:name=".ui.rebind.RebindActivity"/>
+        <activity android:name=".ui.businessDetail.BusinessDetailActivity"/>
 
     </application>
 
