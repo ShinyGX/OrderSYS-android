@@ -6,7 +6,9 @@ import com.last.booking.data.Result;
 import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.BaseInfoObj;
 import com.last.booking.data.dto.BookInfoObj;
+import com.last.booking.data.dto.MissionStatusObj;
 import com.last.booking.data.model.BookInfo;
+import com.last.booking.data.model.MissionStatusInfo;
 import com.last.booking.network.API;
 import com.last.booking.network.HttpConnection;
 import com.last.booking.network.NetworkCallback;
@@ -43,6 +45,45 @@ public class MissionDataSource {
         HttpConnection.getInstance()
                 .post(API.Mission.add + "userId=" + userId + "&officeId=" + officeId + "&businessId=" + businessId + "&time=" + time.getTime(),
                         new FormBody.Builder().build(), BaseInfoObj.class,
+                        new NetworkCallback<BaseInfoObj>() {
+                            @Override
+                            public void onResponse(boolean success, Result<BaseInfoObj> result) {
+                                if(success)
+                                {
+                                    BaseInfoObj data = ((Result.Success<BaseInfoObj>)result).getData();
+                                    callback.result(data.getCode(),data.getMsg(),data.getData());
+                                }
+                                else
+                                    showErrorMessage(result);
+                            }
+                        });
+    }
+
+
+    public void getUserMission(int userId, final ResultCallback<List<MissionStatusInfo>> callback)
+    {
+        HttpConnection.getInstance()
+                .get(API.Mission.getUserMission + "id=" + userId,
+                        MissionStatusObj.class,
+                        new NetworkCallback<MissionStatusObj>() {
+                            @Override
+                            public void onResponse(boolean success, Result<MissionStatusObj> result) {
+                                if(success)
+                                {
+                                    MissionStatusObj data = ((Result.Success<MissionStatusObj>)result).getData();
+                                    callback.result(data.getCode(),data.getMsg(),data.getData());
+                                }
+                                else
+                                    showErrorMessage(result);
+                            }
+                        });
+    }
+
+    public void cancel(int missionId, final ResultCallback<String> callback)
+    {
+        HttpConnection.getInstance()
+                .get(API.Mission.cancel + "id=" + missionId,
+                        BaseInfoObj.class,
                         new NetworkCallback<BaseInfoObj>() {
                             @Override
                             public void onResponse(boolean success, Result<BaseInfoObj> result) {

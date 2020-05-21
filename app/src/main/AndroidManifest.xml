@@ -37,7 +37,7 @@
 
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.booking.BookingActivity"/>
-        <activity android:name=".ui.messageRealtime.MessageRealtimeActivity"/>
+        <activity android:name=".ui.missionHistory.MissionHistoryActivity"/>
         <activity android:name=".ui.businessCheck.BusinessCheckActivity"/>
         <activity android:name=".ui.bookDetail.BookDetailActivity"/>
         <activity android:name=".ui.orderFinalCheck.OrderFinalCheckActivity"/>

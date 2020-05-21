@@ -29,6 +29,8 @@ public class API {
     {
         public static String getUsefulInfo = baseApi + "/mission/getUsefulInfo?";
         public static String add = baseApi + "/mission/add?";
+        public static String getUserMission = baseApi + "/mission/getUserMission?";
+        public static String cancel = baseApi + "/mission/cancel?";
     }
 
     public static class Sms
