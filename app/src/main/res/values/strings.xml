@@ -55,4 +55,11 @@
     <string name="mission_history_mission_time">xDxYxR 9:00</string>
     <string name="mission_history_status">预约状态：</string>
     <string name="mission_history_status_name">已办理</string>
+    <string name="single_business_desc">业务内容：</string>
+    <string name="singlebusiness_detail">详细业务信息</string>
+    <string name="businessdetail_commit">确认</string>
+    <string name="missionhistory_office_name">营业厅名称：</string>
+    <string name="missionhistory_office_address">营业厅地址：</string>
+    <string name="name">国家电网</string>
+    <string name="missionhistory_address">xx路</string>
 </resources>

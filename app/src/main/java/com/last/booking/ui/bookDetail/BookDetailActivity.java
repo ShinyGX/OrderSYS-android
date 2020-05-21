@@ -52,8 +52,8 @@ public class BookDetailActivity extends AppCompatActivity {
                         @Override
                         public void itemClick(int parent,int pos) {
                             MissionDetail missionDetail = bookDetailView.getMissionDetailList().get(parent);
-                            bookDetailViewModel.add(missionDetail.getBusinessId(),
-                                    missionDetail.getTime().get(pos));
+//                            bookDetailViewModel.add(missionDetail.getBusinessId(),
+//                                    missionDetail.getTime().get(pos));
 
                             Intent nextActivity = new Intent(BookDetailActivity.this, OrderFinalCheckActivity.class);
                             nextActivity.putExtra("userId",userId);
@@ -86,11 +86,11 @@ public class BookDetailActivity extends AppCompatActivity {
                 if(bookDetailResult == null)
                     return;
 
-                if(bookDetailResult.getBookSucessView() != null)
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "预约成功",Toast.LENGTH_SHORT).show();
-                }
+//                if(bookDetailResult.getBookSucessView() != null)
+//                {
+//                    Toast.makeText(getApplicationContext(),
+//                            "预约成功",Toast.LENGTH_SHORT).show();
+//                }
 
                 if(bookDetailResult.getError() != null)
                 {

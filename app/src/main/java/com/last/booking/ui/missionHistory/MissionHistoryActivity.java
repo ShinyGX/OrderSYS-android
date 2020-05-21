@@ -3,7 +3,9 @@ package com.last.booking.ui.missionHistory;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.last.booking.OnRecyclerItemClickListener;
 import com.last.booking.R;
+import com.last.booking.SpaceItemDecoration;
 import com.last.booking.ui.missionHistory.adapter.MissionInfoAdapter;
 
 import java.util.Date;
@@ -77,6 +80,7 @@ public class MissionHistoryActivity extends AppCompatActivity {
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                     list.setLayoutManager(linearLayoutManager);
+                    list.addItemDecoration(new SpaceItemDecoration(8));
                     list.setAdapter(adapter);
 
 

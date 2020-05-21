@@ -24,7 +24,7 @@ public class MissionTimeListViewAdapter extends BaseAdapter {
         this.timeList = timeList;
         this.context = context;
 
-        formatTo = new SimpleDateFormat("yyyy-MM-dd a");
+        formatTo = new SimpleDateFormat("yyyy-MM-dd a hh:mm");
     }
 
     @Override

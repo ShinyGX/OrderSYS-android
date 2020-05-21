@@ -62,6 +62,9 @@ public class MissionInfoAdapter extends RecyclerView.Adapter<MissionInfoAdapter.
             viewHolder.tv_status.setTextColor(viewHolder.tv_status.getResources().getColor(R.color.colorBlue));
         viewHolder.tv_status.setText(isFuture ? "已预约" : isDone? "已超时" : "已处理");
 
+        viewHolder.tv_officeName.setText(info.getOfficeName());
+        viewHolder.tv_officeAddress.setText(info.getOfficeAddress());
+
     }
 
     public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener onRecyclerItemClickListener) {
@@ -79,6 +82,8 @@ public class MissionInfoAdapter extends RecyclerView.Adapter<MissionInfoAdapter.
         TextView tv_name;
         TextView tv_time;
         TextView tv_status;
+        TextView tv_officeName;
+        TextView tv_officeAddress;
         ConstraintLayout cl_item;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +91,8 @@ public class MissionInfoAdapter extends RecyclerView.Adapter<MissionInfoAdapter.
             cl_item = itemView.findViewById(R.id.missionhistory_item);
             tv_name = itemView.findViewById(R.id.missionhistory_business_name);
             tv_time = itemView.findViewById(R.id.missionhistory_mission_time);
+            tv_officeAddress = itemView.findViewById(R.id.missionhistory_office_address);
+            tv_officeName = itemView.findViewById(R.id.missionhistory_office_name);
             tv_status = itemView.findViewById(R.id.missionhistory_status);
 
         }
