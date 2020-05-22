@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
 
 import com.last.booking.OnRecyclerItemClickListener;
@@ -64,8 +66,11 @@ public class BusinessDetailActivity extends AppCompatActivity {
                         }
                     });
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BusinessDetailActivity.this);
+                    recyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(BusinessDetailActivity.this,
+                            R.anim.layout_anim_fall_down));
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setAdapter(adapter);
+
                 }
             }
         });

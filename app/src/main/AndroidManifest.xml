@@ -27,8 +27,7 @@
 
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,28 +35,27 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.booking.BookingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="预约信息"/>
         <activity android:name=".ui.missionHistory.MissionHistoryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ui.businessCheck.BusinessCheckActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="我的预约"/>
+        <activity android:name=".ui.businessCheck.BusinessCheckActivity"/>
         <activity android:name=".ui.bookDetail.BookDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="详细预约信息"/>
         <activity android:name=".ui.orderFinalCheck.OrderFinalCheckActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="预约确认"/>
         <activity android:name=".ui.register.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="注册"/>
         <activity android:name=".ui.newInformation.NewInformationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="修改个人信息"/>
         <activity android:name=".ui.rebind.RebindActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="更改绑定手机号"/>
         <activity android:name=".ui.businessDetail.BusinessDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="业务信息"/>
         <activity android:name=".ui.singleBusinessDetail.SingleBusinessDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:label="业务流程"/>
 
     </application>
 

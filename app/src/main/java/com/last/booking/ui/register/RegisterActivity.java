@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.last.booking.R;
-import com.last.booking.data.Userdata;
 import com.last.booking.ui.main.MainActivity;
 import com.last.booking.uitl.ITimer;
 import com.last.booking.uitl.TimeCount;
@@ -146,6 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerViewModel.getCode();
+                timeCount.start();
             }
         });
 
@@ -153,7 +153,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerViewModel.register();
-                timeCount.start();
             }
         });
 

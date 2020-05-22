@@ -5,24 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/bind_phone"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
 
     <EditText
         android:id="@+id/newphone_number"
@@ -40,11 +22,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
 
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/newphone_getCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,7 +37,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:enabled="false"
-        android:background="@drawable/shape_button"
         android:text="@string/get_code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/newphone_number"
         app:layout_constraintVertical_bias="0.028" />
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/newphone_commit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -92,7 +73,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/shape_button"
         android:text="@string/commit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

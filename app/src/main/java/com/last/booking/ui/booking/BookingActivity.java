@@ -13,6 +13,7 @@ import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.last.booking.AnimatedExpandableListView;
 import com.last.booking.R;
 import com.last.booking.ui.bookDetail.BookDetailActivity;
 import com.last.booking.ui.booking.adapter.OfficeInfoExpandableListViewAdapter;
@@ -72,7 +73,7 @@ public class BookingActivity extends AppCompatActivity {
             }
         });
 
-        final ExpandableListView expandableListView = findViewById(R.id.booking_office_list);
+        final AnimatedExpandableListView expandableListView = findViewById(R.id.booking_office_list);
         bookingViewModel.getOfficeInfo().observe(this,
                 new Observer<BookingResult>() {
                     @Override
@@ -94,6 +95,17 @@ public class BookingActivity extends AppCompatActivity {
                                             BookingActivity.this);
 
                             expandableListView.setAdapter(officeInfoExpandableListViewAdapter);
+                            expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                                @Override
+                                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                                    if(expandableListView.isGroupExpanded(groupPosition))
+                                        expandableListView.collapseGroupWithAnimation(groupPosition);
+                                    else
+                                        expandableListView.expandGroupWithAnimation(groupPosition);
+
+                                    return true;
+                                }
+                            });
                             expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
                                 @Override
                                 public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {

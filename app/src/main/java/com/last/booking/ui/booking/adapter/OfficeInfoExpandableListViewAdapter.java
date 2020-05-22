@@ -8,12 +8,13 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.last.booking.AnimatedExpandableListView;
 import com.last.booking.R;
 import com.last.booking.data.model.OfficeDetail;
 
 import java.util.List;
 
-public class OfficeInfoExpandableListViewAdapter extends BaseExpandableListAdapter {
+public class OfficeInfoExpandableListViewAdapter extends AnimatedExpandableListView.AnimatedExpandableListAdapter {
 
 
     private List<String> group;
@@ -31,10 +32,10 @@ public class OfficeInfoExpandableListViewAdapter extends BaseExpandableListAdapt
         return group.size();
     }
 
-    @Override
-    public int getChildrenCount(int groupPosition) {
-        return child.get(groupPosition).size();
-    }
+//    @Override
+//    public int getChildrenCount(int groupPosition) {
+//        return child.get(groupPosition).size();
+//    }
 
     @Override
     public Object getGroup(int groupPosition) {
@@ -68,8 +69,8 @@ public class OfficeInfoExpandableListViewAdapter extends BaseExpandableListAdapt
         {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_office_area_info,parent,false);
             groupViewHolder = new GroupViewHolder();
-            groupViewHolder.tv_title = convertView.findViewById(R.id.office_area);
-            groupViewHolder.iv_arrow = convertView.findViewById(R.id.item_area_arrow);
+            groupViewHolder.tv_title = convertView.findViewById(R.id.office_area_);
+            groupViewHolder.iv_arrow = convertView.findViewById(R.id.item_area_arrow_);
             convertView.setTag(groupViewHolder);
         }
         else
@@ -88,7 +89,7 @@ public class OfficeInfoExpandableListViewAdapter extends BaseExpandableListAdapt
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildViewHolder childViewHolder;
         if(convertView == null)
         {
@@ -106,6 +107,31 @@ public class OfficeInfoExpandableListViewAdapter extends BaseExpandableListAdapt
         childViewHolder.tv_address.setText(child.get(groupPosition).get(childPosition).getAddress());
         return convertView;
     }
+
+    @Override
+    public int getRealChildrenCount(int groupPosition) {
+        return child.get(groupPosition).size();
+    }
+
+//    @Override
+//    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+//        ChildViewHolder childViewHolder;
+//        if(convertView == null)
+//        {
+//            convertView = LayoutInflater.from(context).inflate(R.layout.item_offcie_detail_info,parent,false);
+//            childViewHolder = new ChildViewHolder();
+//            childViewHolder.tv_title = convertView.findViewById(R.id.office_detail);
+//            childViewHolder.tv_address = convertView.findViewById(R.id.office_address);
+//            convertView.setTag(childViewHolder);
+//        }
+//        else
+//            childViewHolder = (ChildViewHolder) convertView.getTag();
+//
+//
+//        childViewHolder.tv_title.setText(child.get(groupPosition).get(childPosition).getDesc());
+//        childViewHolder.tv_address.setText(child.get(groupPosition).get(childPosition).getAddress());
+//        return convertView;
+//    }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

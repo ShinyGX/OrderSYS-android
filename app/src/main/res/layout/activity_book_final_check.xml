@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="@+id/finalcheck_business_id"
         app:layout_constraintVertical_bias="0.879" />
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/finalcheck_commit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#9bd"
         android:text="@string/final_check_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

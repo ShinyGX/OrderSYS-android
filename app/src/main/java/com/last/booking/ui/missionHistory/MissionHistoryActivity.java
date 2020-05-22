@@ -3,19 +3,19 @@ package com.last.booking.ui.missionHistory;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.last.booking.OnRecyclerItemClickListener;
 import com.last.booking.R;
+import com.last.booking.SlideInRightAnimation;
 import com.last.booking.SpaceItemDecoration;
 import com.last.booking.ui.missionHistory.adapter.MissionInfoAdapter;
 
@@ -25,6 +25,7 @@ public class MissionHistoryActivity extends AppCompatActivity {
 
 
     private MissionHistoryViewModel viewModel;
+    private RecyclerView list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +36,9 @@ public class MissionHistoryActivity extends AppCompatActivity {
 
         viewModel.getMissionInfo();
 
-        final RecyclerView list = findViewById(R.id.missionhistory_list);
+        list = findViewById(R.id.missionhistory_list);
+        list.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(MissionHistoryActivity.this,
+                R.anim.layout_anim_fall_down));
 
         viewModel.getMissionInfoResult().observe(this, new Observer<MissionInfoResult>() {
             @Override
@@ -77,12 +80,11 @@ public class MissionHistoryActivity extends AppCompatActivity {
                             }
                         }
                     });
-
+                    adapter.setAnimation(new SlideInRightAnimation());
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                     list.setLayoutManager(linearLayoutManager);
                     list.addItemDecoration(new SpaceItemDecoration(8));
                     list.setAdapter(adapter);
-
 
                 }
             }
@@ -106,5 +108,10 @@ public class MissionHistoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
     }
 }

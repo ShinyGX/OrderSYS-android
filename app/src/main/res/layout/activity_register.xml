@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.019" />
 
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/register_get_code"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
         app:layout_constraintVertical_bias="0.057" />
 
 
-    <Button
+    <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/register_commit"
         android:layout_width="0dp"
         android:enabled="false"
@@ -156,7 +156,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/commit"
-        android:background="@drawable/shape_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
