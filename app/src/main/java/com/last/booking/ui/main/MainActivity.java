@@ -1,6 +1,7 @@
 package com.last.booking.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.last.booking.R;
+import com.last.booking.service.AlarmService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         int userId = getIntent().getIntExtra("userId",-1);
         if(userId == -1)

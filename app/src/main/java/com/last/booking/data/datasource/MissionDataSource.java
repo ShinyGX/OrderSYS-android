@@ -6,6 +6,7 @@ import com.last.booking.data.Result;
 import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.BaseInfoObj;
 import com.last.booking.data.dto.BookInfoObj;
+import com.last.booking.data.dto.MissionInfoObj;
 import com.last.booking.data.dto.MissionStatusObj;
 import com.last.booking.data.model.BookInfo;
 import com.last.booking.data.model.MissionStatusInfo;
@@ -40,17 +41,17 @@ public class MissionDataSource {
                         });
     }
 
-    public void add(int userId, int officeId, int businessId, Date time, final ResultCallback<String> callback)
+    public void add(int userId, int officeId, int businessId, Date time, final ResultCallback<Integer> callback)
     {
         HttpConnection.getInstance()
                 .post(API.Mission.add + "userId=" + userId + "&officeId=" + officeId + "&businessId=" + businessId + "&time=" + time.getTime(),
-                        new FormBody.Builder().build(), BaseInfoObj.class,
-                        new NetworkCallback<BaseInfoObj>() {
+                        new FormBody.Builder().build(), MissionInfoObj.class,
+                        new NetworkCallback<MissionInfoObj>() {
                             @Override
-                            public void onResponse(boolean success, Result<BaseInfoObj> result) {
+                            public void onResponse(boolean success, Result<MissionInfoObj> result) {
                                 if(success)
                                 {
-                                    BaseInfoObj data = ((Result.Success<BaseInfoObj>)result).getData();
+                                    MissionInfoObj data = ((Result.Success<MissionInfoObj>)result).getData();
                                     callback.result(data.getCode(),data.getMsg(),data.getData());
                                 }
                                 else

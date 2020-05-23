@@ -5,26 +5,26 @@ import org.jetbrains.annotations.Nullable;
 public class MissionResult {
 
     @Nullable
-    private String data;
+    private Integer data;
 
     @Nullable
-    private Integer error;
+    private String error;
 
-    public MissionResult(@Nullable String data) {
+    public MissionResult(@Nullable Integer data) {
         this.data = data;
     }
 
-    public MissionResult(@Nullable Integer error) {
+    public MissionResult(@Nullable String error) {
         this.error = error;
     }
 
     @Nullable
-    public String getData() {
+    public Integer getData() {
         return data;
     }
 
     @Nullable
-    public Integer getError() {
+    public String getError() {
         return error;
     }
 }

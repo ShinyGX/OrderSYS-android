@@ -57,6 +57,18 @@
         <activity android:name=".ui.singleBusinessDetail.SingleBusinessDetailActivity"
             android:label="业务流程"/>
 
+
+        <service
+            android:name=".service.AlarmService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="TIMER_ACTION" />
+            </intent-filter>
+        </service>
+
     </application>
+
+
 
 </manifest>

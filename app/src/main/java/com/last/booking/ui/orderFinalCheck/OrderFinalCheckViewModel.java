@@ -40,15 +40,15 @@ public class OrderFinalCheckViewModel extends ViewModel {
 
     public void add(int userId, int officeId, int businessId, Date time)
     {
-        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<String>() {
+        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<Integer>() {
             @Override
-            public void success(String data) {
+            public void success(Integer data) {
                 missionResult.postValue(new MissionResult(data));
             }
 
             @Override
             public void failed(String msg) {
-                missionResult.postValue(new MissionResult(1));
+                missionResult.postValue(new MissionResult(msg));
             }
         });
     }

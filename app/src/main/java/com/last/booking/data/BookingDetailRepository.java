@@ -27,11 +27,11 @@ public class BookingDetailRepository {
         return instance;
     }
 
-    public void add(int userId, int officeId, int businessId, Date time, final RepositoryCallback<String> callback)
+    public void add(int userId, int officeId, int businessId, Date time, final RepositoryCallback<Integer> callback)
     {
-        bookingDetailDataSource.add(userId, officeId, businessId, time, new ResultCallback<String>() {
+        bookingDetailDataSource.add(userId, officeId, businessId, time, new ResultCallback<Integer>() {
             @Override
-            public void result(Integer code, String msg, String data) {
+            public void result(Integer code, String msg, Integer data) {
                 sendMessage(code,msg,data,callback);
             }
         });

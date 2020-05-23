@@ -12,9 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.last.booking.R;
+import com.last.booking.service.AlarmService;
+import com.last.booking.ui.login.LoginActivity;
+import com.last.booking.ui.main.MainActivity;
+import com.last.booking.uitl.NotificationUtil;
+import com.last.booking.uitl.NotifyObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderFinalCheckActivity extends AppCompatActivity {
 
@@ -77,9 +84,24 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
 
                 if(missionResult.getData() != null)
                 {
-                    Toast.makeText(getApplicationContext(),
-                            missionResult.getData(),Toast.LENGTH_SHORT).show();
 
+                    long now = System.currentTimeMillis();
+                    int id = missionResult.getData();
+                    NotifyObject obj = new NotifyObject();
+                    obj.type = id;
+                    obj.title = "预约成功";
+                    obj.subText = "提醒流程";
+                    obj.content = "类型";
+                    obj.firstTime = now + 10;
+                    obj.activityClass = LoginActivity.class;
+                    obj.param = "";
+                    obj.icon = R.drawable.icon;
+                    obj.times = null;
+
+                    @SuppressLint("UseSparseArrays") Map<Integer,NotifyObject> map = new HashMap<>();
+                    map.put(obj.type,obj);
+
+                    NotificationUtil.notifyByAlarm(getApplicationContext(),map);
                     OrderFinalCheckActivity.this.finish();
                 }
             }

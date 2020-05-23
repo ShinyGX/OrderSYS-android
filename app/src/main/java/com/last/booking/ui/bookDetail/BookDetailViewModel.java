@@ -28,9 +28,9 @@ public class BookDetailViewModel extends ViewModel {
 
     void add(int businessId, Date time)
     {
-        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<String>() {
+        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<Integer>() {
             @Override
-            public void success(String data) {
+            public void success(Integer data) {
                 bookSuccessInfo.postValue(new BookDetailResult(new BookDetailSuccessView()));
             }
 
