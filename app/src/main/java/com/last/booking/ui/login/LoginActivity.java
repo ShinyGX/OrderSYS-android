@@ -58,14 +58,17 @@ public class LoginActivity extends AppCompatActivity {
                 || !(ActivityCompat.checkSelfPermission(
                 LoginActivity.this,Manifest.permission.ACCESS_WIFI_STATE) == PackageManager.PERMISSION_GRANTED)
                 || !(ActivityCompat.checkSelfPermission(
-                LoginActivity.this,Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED))
+                LoginActivity.this,Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED)
+                || !(ActivityCompat.checkSelfPermission(
+                        LoginActivity.this,Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED))
         {
             //没有权限，申请权限
             String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                     Manifest.permission.CAMERA,
                                     Manifest.permission.INTERNET,
                                     Manifest.permission.ACCESS_WIFI_STATE,
-                                    Manifest.permission.ACCESS_NETWORK_STATE};
+                                    Manifest.permission.ACCESS_NETWORK_STATE,
+                                    Manifest.permission.SEND_SMS};
 
             ActivityCompat.requestPermissions(LoginActivity.this,permissions,REQUEST_CODE);
         }
@@ -149,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                     map.put("name",weiboShow.getScreen_name());
                     map.put("icon",imageUrl);
                     loginViewModel.reset(map);
+
                 }
             }
         });

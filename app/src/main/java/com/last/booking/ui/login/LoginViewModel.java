@@ -64,6 +64,7 @@ public class LoginViewModel extends ViewModel {
                 weiboLoginResult.postValue(new WeiboLoginResult(data));
                 userId = data.getUserId();
                 Userdata.getInstance().setUserInfo(data);
+                Userdata.getInstance().setWeiboLogin(true);
             }
 
             @Override

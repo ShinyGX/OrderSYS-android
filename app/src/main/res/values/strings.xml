@@ -62,4 +62,5 @@
     <string name="missionhistory_office_address">营业厅地址：</string>
     <string name="name">国家电网</string>
     <string name="missionhistory_address">xx路</string>
+    <string name="book_detail_title">业务类型</string>
 </resources>

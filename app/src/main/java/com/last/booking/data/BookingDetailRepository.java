@@ -2,6 +2,7 @@ package com.last.booking.data;
 
 import com.last.booking.data.datasource.MissionDataSource;
 import com.last.booking.data.model.BookInfo;
+import com.last.booking.data.model.MissionAddResult;
 import com.last.booking.network.ErrorCode;
 
 import java.util.Date;
@@ -27,11 +28,11 @@ public class BookingDetailRepository {
         return instance;
     }
 
-    public void add(int userId, int officeId, int businessId, Date time, final RepositoryCallback<Integer> callback)
+    public void add(int userId, int officeId, int businessId, Date time, final RepositoryCallback<MissionAddResult> callback)
     {
-        bookingDetailDataSource.add(userId, officeId, businessId, time, new ResultCallback<Integer>() {
+        bookingDetailDataSource.add(userId, officeId, businessId, time, new ResultCallback<MissionAddResult>() {
             @Override
-            public void result(Integer code, String msg, Integer data) {
+            public void result(Integer code, String msg, MissionAddResult data) {
                 sendMessage(code,msg,data,callback);
             }
         });

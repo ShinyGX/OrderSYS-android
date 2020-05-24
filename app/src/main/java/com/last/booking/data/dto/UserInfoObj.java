@@ -10,6 +10,7 @@ public class UserInfoObj {
     private Integer code;
     private UserInfo data;
 
+
     public UserInfoObj() {
     }
 

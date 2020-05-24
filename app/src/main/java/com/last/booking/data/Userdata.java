@@ -8,6 +8,8 @@ public class Userdata {
     private UserInfo userInfo;
     private String pwd;
 
+    private boolean isWeiboLogin = false;
+
     private Userdata(){}
 
     private final static Object lock = new Object();
@@ -22,6 +24,14 @@ public class Userdata {
             }
         }
         return mInstance;
+    }
+
+    public boolean isWeiboLogin() {
+        return isWeiboLogin;
+    }
+
+    public void setWeiboLogin(boolean weiboLogin) {
+        isWeiboLogin = weiboLogin;
     }
 
     public UserInfo getUserInfo() {

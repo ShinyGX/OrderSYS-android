@@ -35,7 +35,7 @@ public class BusinessDetailActivity extends AppCompatActivity {
 
 
         viewModel.getAllBusiness();
-        final RecyclerView recyclerView = findViewById(R.id.businessdetail_list);
+        final RecyclerView recyclerView = findViewById(R.id.businessdetail_list_);
 
         viewModel.getBusinessInfoResult().observe(this, new Observer<BusinessInfoResult>() {
             @Override

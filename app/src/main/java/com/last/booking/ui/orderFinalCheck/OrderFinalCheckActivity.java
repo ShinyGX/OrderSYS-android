@@ -12,13 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.last.booking.R;
-import com.last.booking.service.AlarmService;
+import com.last.booking.SmsManager;
+import com.last.booking.data.model.MissionAddResult;
 import com.last.booking.ui.login.LoginActivity;
-import com.last.booking.ui.main.MainActivity;
+import com.last.booking.ui.missionHistory.MissionHistoryActivity;
 import com.last.booking.uitl.NotificationUtil;
 import com.last.booking.uitl.NotifyObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,14 +88,17 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
                 {
 
                     long now = System.currentTimeMillis();
-                    int id = missionResult.getData();
+                    MissionAddResult info = missionResult.getData();
+                    String text = "亲爱的用户" + info.getUserName() + ",您成功预约了" + info.getOfficeName() +
+                            "(" + info.getOfficeAddress() + ")的" + info.getBusinessName() + "业务,预约时间为:" + info.getOrderTime() +
+                            "预约号为" + info.getMissionRegisterId() + ",届时请带齐办理业务所需物品前往";
                     NotifyObject obj = new NotifyObject();
-                    obj.type = id;
+                    obj.type = info.getMissionId() * 1000;
                     obj.title = "预约成功";
-                    obj.subText = "提醒流程";
-                    obj.content = "类型";
-                    obj.firstTime = now + 10;
-                    obj.activityClass = LoginActivity.class;
+                    obj.subText = text;
+                    obj.content = "预约提醒";
+                    obj.firstTime = now;
+                    obj.activityClass = MissionHistoryActivity.class;
                     obj.param = "";
                     obj.icon = R.drawable.icon;
                     obj.times = null;
@@ -101,7 +106,26 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
                     @SuppressLint("UseSparseArrays") Map<Integer,NotifyObject> map = new HashMap<>();
                     map.put(obj.type,obj);
 
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(new Date(time));
+                    calendar.add(Calendar.HOUR,-1);
+                    NotifyObject obj2 = new NotifyObject();
+                    obj2.type = info.getMissionId();
+                    obj2.title = "您预约的" + info.getBusinessName() + "即将开始";
+                    obj2.subText = "您预约的" + info.getBusinessName() + "(预约号:" + info.getMissionRegisterId() + ")" +
+                            ",地址为" + info.getOfficeAddress() + ",即将开始业务，请届时准时到达，若到达后以过号，可向前台咨询";
+                    obj2.content = "预约提醒";
+                    obj2.firstTime = calendar.getTimeInMillis();
+                    obj2.activityClass = LoginActivity.class;
+                    obj2.param = "";
+                    obj2.icon = R.drawable.icon;
+                    obj2.times = null;
+
+                    map.put(obj2.type,obj2);
+
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                     NotificationUtil.notifyByAlarm(getApplicationContext(),map);
+                    SmsManager.getInstance().sendMessage("[OrderSYS] " + text);
                     OrderFinalCheckActivity.this.finish();
                 }
             }

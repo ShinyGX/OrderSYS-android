@@ -43,6 +43,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_username" />
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/login_loading"
+        style="@style/SpinKitView.Large.Circle"
+        app:SpinKit_Color="@color/coral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+
     <com.cengalabs.flatui.views.FlatButton
         android:id="@+id/login_login"
         android:layout_width="0dp"
@@ -85,23 +104,7 @@
      />
 
 
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/login_loading"
-        style="@style/SpinKitView.Large.Circle"
-        app:SpinKit_Color="@color/coral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/login_password"
-        app:layout_constraintStart_toStartOf="@+id/login_password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+
 
 
 

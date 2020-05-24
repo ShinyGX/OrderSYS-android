@@ -7,6 +7,7 @@ import com.last.booking.data.BookingDetailRepository;
 import com.last.booking.data.BusinessRepository;
 import com.last.booking.data.RepositoryCallback;
 import com.last.booking.data.model.BusinessInfo;
+import com.last.booking.data.model.MissionAddResult;
 
 import java.util.Date;
 
@@ -40,9 +41,9 @@ public class OrderFinalCheckViewModel extends ViewModel {
 
     public void add(int userId, int officeId, int businessId, Date time)
     {
-        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<Integer>() {
+        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<MissionAddResult>() {
             @Override
-            public void success(Integer data) {
+            public void success(MissionAddResult data) {
                 missionResult.postValue(new MissionResult(data));
             }
 

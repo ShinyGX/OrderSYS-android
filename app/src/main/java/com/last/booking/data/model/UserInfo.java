@@ -11,14 +11,30 @@ public class UserInfo {
 
     private String userName;
     private String userIcon;
+    private String phone;
 
     public UserInfo() {
+    }
+
+    public UserInfo(Integer userId, String userName, String userIcon, String phone) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userIcon = userIcon;
+        this.phone = phone;
     }
 
     public UserInfo(Integer userId, String userName, String userIcon) {
         this.userId = userId;
         this.userName = userName;
         this.userIcon = userIcon;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getUserId() {

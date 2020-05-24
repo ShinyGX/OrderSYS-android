@@ -1,16 +1,18 @@
 package com.last.booking.ui.orderFinalCheck;
 
+import com.last.booking.data.model.MissionAddResult;
+
 import org.jetbrains.annotations.Nullable;
 
 public class MissionResult {
 
     @Nullable
-    private Integer data;
+    private MissionAddResult data;
 
     @Nullable
     private String error;
 
-    public MissionResult(@Nullable Integer data) {
+    public MissionResult(@Nullable MissionAddResult data) {
         this.data = data;
     }
 
@@ -19,7 +21,7 @@ public class MissionResult {
     }
 
     @Nullable
-    public Integer getData() {
+    public MissionAddResult getData() {
         return data;
     }
 

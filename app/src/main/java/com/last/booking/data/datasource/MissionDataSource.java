@@ -6,9 +6,11 @@ import com.last.booking.data.Result;
 import com.last.booking.data.ResultCallback;
 import com.last.booking.data.dto.BaseInfoObj;
 import com.last.booking.data.dto.BookInfoObj;
+import com.last.booking.data.dto.MissionAddResultObj;
 import com.last.booking.data.dto.MissionInfoObj;
 import com.last.booking.data.dto.MissionStatusObj;
 import com.last.booking.data.model.BookInfo;
+import com.last.booking.data.model.MissionAddResult;
 import com.last.booking.data.model.MissionStatusInfo;
 import com.last.booking.network.API;
 import com.last.booking.network.HttpConnection;
@@ -41,17 +43,17 @@ public class MissionDataSource {
                         });
     }
 
-    public void add(int userId, int officeId, int businessId, Date time, final ResultCallback<Integer> callback)
+    public void add(int userId, int officeId, int businessId, Date time, final ResultCallback<MissionAddResult> callback)
     {
         HttpConnection.getInstance()
                 .post(API.Mission.add + "userId=" + userId + "&officeId=" + officeId + "&businessId=" + businessId + "&time=" + time.getTime(),
-                        new FormBody.Builder().build(), MissionInfoObj.class,
-                        new NetworkCallback<MissionInfoObj>() {
+                        new FormBody.Builder().build(), MissionAddResultObj.class,
+                        new NetworkCallback<MissionAddResultObj>() {
                             @Override
-                            public void onResponse(boolean success, Result<MissionInfoObj> result) {
+                            public void onResponse(boolean success, Result<MissionAddResultObj> result) {
                                 if(success)
                                 {
-                                    MissionInfoObj data = ((Result.Success<MissionInfoObj>)result).getData();
+                                    MissionAddResultObj data = ((Result.Success<MissionAddResultObj>)result).getData();
                                     callback.result(data.getCode(),data.getMsg(),data.getData());
                                 }
                                 else
