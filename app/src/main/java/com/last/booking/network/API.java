@@ -44,4 +44,9 @@ public class API {
     {
         public static String upload = baseApi + "/file/upload?";
     }
+
+    public static class Rule
+    {
+        public static String getAllEachOffice = baseApi + "/rule/getAllEachOffice";
+    }
 }

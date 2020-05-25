@@ -59,6 +59,12 @@
             android:label="业务信息"/>
         <activity android:name=".ui.singleBusinessDetail.SingleBusinessDetailActivity"
             android:label="业务流程"/>
+        <activity android:name=".ui.officeMessage.OfficeMessageActivity"
+            android:label="营业厅信息"/>
+        <activity android:name=".ui.rule.RuleActivity"
+            android:label="营业厅规则"/>
+        <activity android:name=".ui.ruleDetail.RuleDetailActivity"
+            android:label="规则细说"/>
 
 
         <service

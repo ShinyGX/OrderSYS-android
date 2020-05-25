@@ -15,6 +15,7 @@ import com.last.booking.R;
 import com.last.booking.ui.booking.BookingActivity;
 import com.last.booking.ui.businessDetail.BusinessDetailActivity;
 import com.last.booking.ui.missionHistory.MissionHistoryActivity;
+import com.last.booking.ui.officeMessage.OfficeMessageActivity;
 
 public class BusinessFragment extends Fragment {
 
@@ -39,7 +40,7 @@ public class BusinessFragment extends Fragment {
         ib_businessCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpOtherActivity(BusinessDetailActivity.class);
+                jumpOtherActivity(OfficeMessageActivity.class);
             }
         });
         ImageButton ib_messageRealtime = view.findViewById(R.id.mine_message_realtime);

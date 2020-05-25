@@ -133,6 +133,9 @@ public class InformationFragment extends Fragment {
         });
 
         Button btn_change = view.findViewById(R.id.information_change);
+        if(Userdata.getInstance().isWeiboLogin())
+            btn_change.setEnabled(false);
+
         btn_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
