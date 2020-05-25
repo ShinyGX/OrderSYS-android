@@ -1,32 +1,37 @@
 package com.last.booking.data;
 
 import com.last.booking.data.datasource.FileDataSource;
+import com.last.booking.data.datasource.MissionDataSource;
 import com.last.booking.data.datasource.UserDataSource;
+import com.last.booking.data.model.MissionNoticeInfo;
 import com.last.booking.data.model.UserInfo;
 import com.last.booking.network.ErrorCode;
 
 import java.io.File;
+import java.util.List;
 
 public class MainRepository {
 
     private static volatile MainRepository mInstance;
     private FileDataSource fileDataSource;
     private UserDataSource userDataSource;
-    private MainRepository(FileDataSource fileDataSource,UserDataSource userDataSource)
+    private MissionDataSource missionDataSource;
+    private MainRepository(FileDataSource fileDataSource,UserDataSource userDataSource,MissionDataSource missionDataSource)
     {
         this.fileDataSource = fileDataSource;
         this.userDataSource = userDataSource;
+        this.missionDataSource = missionDataSource;
     }
 
     private final static Object lock = new Object();
-    public static MainRepository getInstance(FileDataSource fileDataSource,UserDataSource userDataSource)
+    public static MainRepository getInstance(FileDataSource fileDataSource,UserDataSource userDataSource,MissionDataSource missionDataSource)
     {
         if(mInstance == null)
         {
             synchronized (lock)
             {
                 if(mInstance == null)
-                    mInstance = new MainRepository(fileDataSource,userDataSource);
+                    mInstance = new MainRepository(fileDataSource,userDataSource,missionDataSource);
             }
         }
 
@@ -60,4 +65,16 @@ public class MainRepository {
         });
     }
 
+    public void getNotice(int userId, final RepositoryCallback<List<MissionNoticeInfo>> callback)
+    {
+        missionDataSource.getNotice(userId, new ResultCallback<List<MissionNoticeInfo>>() {
+            @Override
+            public void result(Integer code, String msg, List<MissionNoticeInfo> data) {
+                if(code == ErrorCode.SUCCESS)
+                    callback.success(data);
+                else
+                    callback.failed(msg);
+            }
+        });
+    }
 }

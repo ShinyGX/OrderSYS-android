@@ -28,6 +28,7 @@ public class AreaInfoView {
             {
                 officeDesc.get(obj.getAreaId()).add(
                         new OfficeDetail(
+                                obj.getOfficeId(),
                                 obj.getOfficeDesc(),
                                 obj.getCityDecs() + obj.getAreaDesc() + obj.getOfficeAddressDesc()));
             }
@@ -37,6 +38,7 @@ public class AreaInfoView {
                 officeDesc.put(obj.getAreaId(),new ArrayList<OfficeDetail>());
                 officeDesc.get(obj.getAreaId()).add(
                         new OfficeDetail(
+                                obj.getOfficeId(),
                                 obj.getOfficeDesc(),
                                 obj.getCityDecs() + obj.getAreaDesc() + obj.getOfficeAddressDesc()));
             }

@@ -12,11 +12,11 @@
     <string name="third_part_login">----------------------- 第三方登陆 ------------------------</string>
     <string name="action_register">注册</string>
     <string name="booking_online">在线预约</string>
-    <string name="booking_description">在线预约电网服务解放你的时间</string>
-    <string name="business_check">业务查询</string>
+    <string name="booking_description">在线预约电网服务，解放你的时间</string>
+    <string name="business_check">业务详细查询</string>
     <string name="business_description">提供多种业务的详细信息，需求以及注意事项</string>
-    <string name="mine_message">我的信息</string>
-    <string name="message_description">实时查看业务信息，实时修改</string>
+    <string name="mine_message">我的预约记录</string>
+    <string name="message_description">查看预约信息，实时修改</string>
     <string name="main">首页</string>
     <string name="mine">我的</string>
     <string name="mission_desc">业务详细信息xxxx</string>

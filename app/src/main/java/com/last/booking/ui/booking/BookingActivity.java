@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.last.booking.AnimatedExpandableListView;
 import com.last.booking.R;
+import com.last.booking.data.model.OfficeDetail;
 import com.last.booking.ui.bookDetail.BookDetailActivity;
 import com.last.booking.ui.booking.adapter.OfficeInfoExpandableListViewAdapter;
 
@@ -88,7 +90,7 @@ public class BookingActivity extends AppCompatActivity {
                         if(bookingResult.getAreaInfoView() != null)
                         {
                             final AreaInfoView areaInfoView = bookingResult.getAreaInfoView();
-                            OfficeInfoExpandableListViewAdapter officeInfoExpandableListViewAdapter
+                            final OfficeInfoExpandableListViewAdapter officeInfoExpandableListViewAdapter
                                     = new OfficeInfoExpandableListViewAdapter(
                                             areaInfoView.getAreas(),
                                             areaInfoView.getOffices(),
@@ -113,8 +115,9 @@ public class BookingActivity extends AppCompatActivity {
                                             areaInfoView.getOffices().get(groupPosition).get(childPosition).getDesc(),
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(BookingActivity.this, BookDetailActivity.class);
+                                    OfficeDetail offices = (OfficeDetail) officeInfoExpandableListViewAdapter.getChild(groupPosition,childPosition);
                                     intent.putExtra("userId",bookingViewModel.getUserId());
-                                    intent.putExtra("officeId",areaInfoView.getOfficeId(childPosition));
+                                    intent.putExtra("officeId",offices.getOfficeId());
                                     startActivity(intent);
                                     BookingActivity.this.finish();
                                     return true;

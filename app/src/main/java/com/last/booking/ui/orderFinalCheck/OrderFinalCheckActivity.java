@@ -93,11 +93,11 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
                             "(" + info.getOfficeAddress() + ")的" + info.getBusinessName() + "业务,预约时间为:" + info.getOrderTime() +
                             "预约号为" + info.getMissionRegisterId() + ",届时请带齐办理业务所需物品前往";
                     NotifyObject obj = new NotifyObject();
-                    obj.type = info.getMissionId() * 1000;
+                    obj.type = info.getMissionId() ;
                     obj.title = "预约成功";
-                    obj.subText = text;
-                    obj.content = "预约提醒";
-                    obj.firstTime = now;
+                    obj.subText = "预约提醒";
+                    obj.content = text;
+                    obj.firstTime = now + 10;
                     obj.activityClass = MissionHistoryActivity.class;
                     obj.param = "";
                     obj.icon = R.drawable.icon;
@@ -108,13 +108,13 @@ public class OrderFinalCheckActivity extends AppCompatActivity {
 
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(new Date(time));
-                    calendar.add(Calendar.HOUR,-1);
+                    calendar.add(Calendar.HOUR_OF_DAY,-1);
                     NotifyObject obj2 = new NotifyObject();
-                    obj2.type = info.getMissionId();
+                    obj2.type = info.getMissionId() * 1000;
                     obj2.title = "您预约的" + info.getBusinessName() + "即将开始";
-                    obj2.subText = "您预约的" + info.getBusinessName() + "(预约号:" + info.getMissionRegisterId() + ")" +
+                    obj2.subText = "预约提醒";
+                    obj2.content = "您预约的" + info.getBusinessName() + "(预约号:" + info.getMissionRegisterId() + ")" +
                             ",地址为" + info.getOfficeAddress() + ",即将开始业务，请届时准时到达，若到达后以过号，可向前台咨询";
-                    obj2.content = "预约提醒";
                     obj2.firstTime = calendar.getTimeInMillis();
                     obj2.activityClass = LoginActivity.class;
                     obj2.param = "";

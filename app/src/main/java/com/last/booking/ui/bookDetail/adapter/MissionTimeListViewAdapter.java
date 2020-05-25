@@ -49,7 +49,7 @@ public class MissionTimeListViewAdapter extends BaseAdapter {
         {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_book_time_list,parent,false);
             childViewHolder = new ViewHolder();
-            childViewHolder.desc = convertView.findViewById(R.id.book_time_list_);
+            childViewHolder.desc = convertView.findViewById(R.id.bookdetail_text);
             convertView.setTag(childViewHolder);
         }
         else

@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import com.last.booking.data.MainRepository;
 import com.last.booking.data.RepositoryCallback;
 import com.last.booking.data.Userdata;
+import com.last.booking.data.model.MissionNoticeInfo;
 import com.last.booking.data.model.UserInfo;
 
 import java.io.File;
+import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
@@ -17,6 +19,8 @@ public class MainViewModel extends ViewModel {
 
     private MutableLiveData<UploadResult> uploadResult = new MutableLiveData<>();
     private MutableLiveData<UserInfoResult> userInfoResult = new MutableLiveData<>();
+    private MutableLiveData<NoticeResult> noticeResult = new MutableLiveData<>();
+
 
     public MainViewModel(MainRepository repository)
     {
@@ -59,6 +63,22 @@ public class MainViewModel extends ViewModel {
                 });
     }
 
+    public void getNotice()
+    {
+        mainRepository.getNotice(Userdata.getInstance().getUserInfo().getUserId(),
+                new RepositoryCallback<List<MissionNoticeInfo>>() {
+                    @Override
+                    public void success(List<MissionNoticeInfo> data) {
+                        noticeResult.postValue(new NoticeResult(data));
+                    }
+
+                    @Override
+                    public void failed(String msg) {
+                        noticeResult.postValue(new NoticeResult(msg));
+                    }
+                });
+    }
+
     public void upload(int id, File file)
     {
         mainRepository.uploadIcon(id, file, new RepositoryCallback<String>() {
@@ -72,6 +92,10 @@ public class MainViewModel extends ViewModel {
                 uploadResult.postValue(new UploadResult(msg));
             }
         });
+    }
+
+    public MutableLiveData<NoticeResult> getNoticeResult() {
+        return noticeResult;
     }
 
     public MutableLiveData<UserInfoResult> getUserInfoResult() {

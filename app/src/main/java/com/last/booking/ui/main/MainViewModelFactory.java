@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.last.booking.data.MainRepository;
 import com.last.booking.data.datasource.FileDataSource;
+import com.last.booking.data.datasource.MissionDataSource;
 import com.last.booking.data.datasource.UserDataSource;
 
 public class MainViewModelFactory implements ViewModelProvider.Factory {
@@ -17,7 +18,7 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
         if(modelClass.isAssignableFrom(MainViewModel.class))
         {
             return (T) new MainViewModel(MainRepository.getInstance(
-                    new FileDataSource(),new UserDataSource()));
+                    new FileDataSource(),new UserDataSource(),new MissionDataSource()));
         }else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

@@ -55,6 +55,9 @@ public class InformationFragment extends Fragment {
 
     private Context context;
 
+    private SimpleDraweeView sdv_bg;
+    private SimpleDraweeView sdv_icon;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -69,8 +72,8 @@ public class InformationFragment extends Fragment {
 
         GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
 
-        final SimpleDraweeView sdv_icon = view.findViewById(R.id.information_icon);
-        final SimpleDraweeView sdv_bg = view.findViewById(R.id.information_bg);
+       sdv_icon = view.findViewById(R.id.information_icon);
+       sdv_bg = view.findViewById(R.id.information_bg);
 
         RoundingParams circle = RoundingParams.asCircle();
         GenericDraweeHierarchy hierarchy = builder.setRoundingParams(circle).build();
@@ -174,6 +177,31 @@ public class InformationFragment extends Fragment {
         }
     }
 
+    private void setIcon(SimpleDraweeView sdv_icon, SimpleDraweeView sdv_bg,Uri u) {
+        if(u != null)
+        {
+            sdv_icon.setImageURI(Uri.parse(Userdata.getInstance().getUserInfo().getUserIcon()));
+            blur(sdv_bg);
+        }
+    }
+
+    private void blur(SimpleDraweeView sdv_bg,Uri u) {
+        try {
+            Uri uri = u;
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                    .setPostprocessor(new IterativeBoxBlurPostProcessor(5, 10))
+                    .build();
+            AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setOldController(sdv_bg.getController())
+                    .setImageRequest(request)
+                    .build();
+            sdv_bg.setController(controller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     private void showChoosePictureDialog()
     {
@@ -227,6 +255,7 @@ public class InformationFragment extends Fragment {
                     if(data.getData() != null)
                     {
                         File file1 = new File(FileUtil.getFilePathByUri(getContext(),data.getData()));
+                        setIcon(sdv_icon,sdv_bg,data.getData());
                         mainViewModel.upload(Userdata.getInstance().getUserInfo().getUserId(),file1);
                     }
                     break;

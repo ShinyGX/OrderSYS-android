@@ -32,6 +32,7 @@ public class API {
         public static String add = baseApi + "/mission/add?";
         public static String getUserMission = baseApi + "/mission/getUserMission?";
         public static String cancel = baseApi + "/mission/cancel?";
+        public static String getNotice = baseApi + "/mission/getNotice?";
     }
 
     public static class Sms

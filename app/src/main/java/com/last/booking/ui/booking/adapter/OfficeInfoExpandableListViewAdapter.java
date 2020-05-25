@@ -70,7 +70,7 @@ public class OfficeInfoExpandableListViewAdapter extends AnimatedExpandableListV
             convertView = LayoutInflater.from(context).inflate(R.layout.item_office_area_info,parent,false);
             groupViewHolder = new GroupViewHolder();
             groupViewHolder.tv_title = convertView.findViewById(R.id.office_area_);
-            groupViewHolder.iv_arrow = convertView.findViewById(R.id.item_area_arrow_);
+            //groupViewHolder.iv_arrow = convertView.findViewById(R.id.item_area_arrow_);
             convertView.setTag(groupViewHolder);
         }
         else
@@ -80,10 +80,10 @@ public class OfficeInfoExpandableListViewAdapter extends AnimatedExpandableListV
 
         groupViewHolder.tv_title.setText(group.get(groupPosition));
 
-        if(isExpanded)
-            groupViewHolder.iv_arrow.setImageResource(R.drawable.arrow_down);
-        else
-            groupViewHolder.iv_arrow.setImageResource(R.drawable.arrow_left);
+//        if(isExpanded)
+//            groupViewHolder.iv_arrow.setImageResource(R.drawable.arrow_down);
+//        else
+//            groupViewHolder.iv_arrow.setImageResource(R.drawable.arrow_left);
 
         return convertView;
     }
@@ -149,4 +149,6 @@ public class OfficeInfoExpandableListViewAdapter extends AnimatedExpandableListV
         TextView tv_title;
         TextView tv_address;
     }
+
+
 }

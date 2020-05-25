@@ -1,19 +1,19 @@
 package com.last.booking.data.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 public class BookInfo {
 
     private Integer businessId;
     private String businessName;
     private String businessDesc;
-    private List<Date> usefulTime;
+    private Map<Date,Integer> usefulTime;
 
     public BookInfo() {
     }
 
-    public BookInfo(Integer businessId, String businessName, String businessDesc, List<Date> usefulTime) {
+    public BookInfo(Integer businessId, String businessName, String businessDesc, Map<Date, Integer> usefulTime) {
         this.businessId = businessId;
         this.businessName = businessName;
         this.businessDesc = businessDesc;
@@ -44,11 +44,11 @@ public class BookInfo {
         this.businessDesc = businessDesc;
     }
 
-    public List<Date> getUsefulTime() {
+    public Map<Date, Integer> getUsefulTime() {
         return usefulTime;
     }
 
-    public void setUsefulTime(List<Date> usefulTime) {
+    public void setUsefulTime(Map<Date, Integer> usefulTime) {
         this.usefulTime = usefulTime;
     }
 }

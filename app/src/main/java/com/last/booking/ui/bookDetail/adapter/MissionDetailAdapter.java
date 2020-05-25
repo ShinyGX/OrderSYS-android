@@ -38,17 +38,17 @@ public class MissionDetailAdapter extends RecyclerView.Adapter<MissionDetailAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.title.setText(missionDetail.get(i).getName());
-        viewHolder.desc.setText(missionDetail.get(i).getDesc());
-        viewHolder.timeList.setAdapter(new MissionTimeListViewAdapter(missionDetail.get(i).getTime(),context));
-        final int index = i;
-        viewHolder.timeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(onItemClick != null)
-                    onItemClick.itemClick(index,position);
-            }
-        });
+//        viewHolder.title.setText(missionDetail.get(i).getName());
+//        viewHolder.desc.setText(missionDetail.get(i).getDesc());
+//        viewHolder.timeList.setAdapter(new MissionTimeListViewAdapter(missionDetail.get(i).getTime(),context));
+//        final int index = i;
+//        viewHolder.timeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if(onItemClick != null)
+//                    onItemClick.itemClick(index,position);
+//            }
+//        });
     }
 
     @Override

@@ -2,21 +2,33 @@ package com.last.booking.data.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class MissionDetail {
     private int businessId;
     private String name;
     private String desc;
-    private List<Date> time;
+    private Map<Date, Integer> time;
+    private List<Date> orderList;
 
     public MissionDetail() {
     }
 
-    public MissionDetail(int businessId, String name, String desc, List<Date> time) {
+
+    public MissionDetail(int businessId, String name, String desc, Map<Date, Integer> time, List<Date> orderList) {
         this.businessId = businessId;
         this.name = name;
         this.desc = desc;
         this.time = time;
+        this.orderList = orderList;
+    }
+
+    public List<Date> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Date> orderList) {
+        this.orderList = orderList;
     }
 
     public int getBusinessId() {
@@ -43,11 +55,11 @@ public class MissionDetail {
         this.desc = desc;
     }
 
-    public List<Date> getTime() {
+    public Map<Date, Integer> getTime() {
         return time;
     }
 
-    public void setTime(List<Date> time) {
+    public void setTime(Map<Date, Integer> time) {
         this.time = time;
     }
 }

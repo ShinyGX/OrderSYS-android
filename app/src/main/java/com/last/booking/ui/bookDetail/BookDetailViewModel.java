@@ -6,11 +6,14 @@ import android.arch.lifecycle.ViewModel;
 import com.last.booking.data.BookingDetailRepository;
 import com.last.booking.data.RepositoryCallback;
 import com.last.booking.data.model.BookInfo;
+import com.last.booking.data.model.MissionAddResult;
 import com.last.booking.data.model.MissionDetail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class BookDetailViewModel extends ViewModel {
 
@@ -28,9 +31,9 @@ public class BookDetailViewModel extends ViewModel {
 
     void add(int businessId, Date time)
     {
-        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<Integer>() {
+        bookingDetailRepository.add(userId, officeId, businessId, time, new RepositoryCallback<MissionAddResult>() {
             @Override
-            public void success(Integer data) {
+            public void success(MissionAddResult data) {
                 bookSuccessInfo.postValue(new BookDetailResult(new BookDetailSuccessView()));
             }
 
@@ -47,13 +50,25 @@ public class BookDetailViewModel extends ViewModel {
             @Override
             public void success(List<BookInfo> data) {
                 List<MissionDetail> missionDetails = new ArrayList<>();
-                for(BookInfo bookInfo : data)
-                {
+                for(BookInfo bookInfo : data) {
+
+                    Set<Date> set = bookInfo.getUsefulTime().keySet();
+                    Object[] arr = set.toArray();
+                    Arrays.sort(arr);
+                    List<Date> list = new ArrayList<>();
+                    if (arr != null) {
+                        for (Object key : arr) {
+                            list.add((Date) key);
+                        }
+                    }
+
                     missionDetails.add(new MissionDetail(
                             bookInfo.getBusinessId(),
                             bookInfo.getBusinessName(),
                             bookInfo.getBusinessDesc(),
-                            bookInfo.getUsefulTime()));
+                            bookInfo.getUsefulTime(),
+                            list));
+
                 }
                 bookInfo.postValue(new BookDetailResult(new BookDetailView(missionDetails)));
             }

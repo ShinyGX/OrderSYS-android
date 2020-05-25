@@ -8,9 +8,11 @@ import com.last.booking.data.dto.BaseInfoObj;
 import com.last.booking.data.dto.BookInfoObj;
 import com.last.booking.data.dto.MissionAddResultObj;
 import com.last.booking.data.dto.MissionInfoObj;
+import com.last.booking.data.dto.MissionNoticeObj;
 import com.last.booking.data.dto.MissionStatusObj;
 import com.last.booking.data.model.BookInfo;
 import com.last.booking.data.model.MissionAddResult;
+import com.last.booking.data.model.MissionNoticeInfo;
 import com.last.booking.data.model.MissionStatusInfo;
 import com.last.booking.network.API;
 import com.last.booking.network.HttpConnection;
@@ -93,6 +95,25 @@ public class MissionDataSource {
                                 if(success)
                                 {
                                     BaseInfoObj data = ((Result.Success<BaseInfoObj>)result).getData();
+                                    callback.result(data.getCode(),data.getMsg(),data.getData());
+                                }
+                                else
+                                    showErrorMessage(result);
+                            }
+                        });
+    }
+
+    public void getNotice(int userId, final ResultCallback<List<MissionNoticeInfo>> callback)
+    {
+        HttpConnection.getInstance()
+                .get(API.Mission.getNotice + "userId=" + userId,
+                        MissionNoticeObj.class,
+                        new NetworkCallback<MissionNoticeObj>() {
+                            @Override
+                            public void onResponse(boolean success, Result<MissionNoticeObj> result) {
+                                if(success)
+                                {
+                                    MissionNoticeObj data = ((Result.Success<MissionNoticeObj>)result).getData();
                                     callback.result(data.getCode(),data.getMsg(),data.getData());
                                 }
                                 else
